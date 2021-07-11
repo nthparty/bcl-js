@@ -25,7 +25,7 @@ The library can be imported in the usual ways:
 
 ```JavaScript
 const BCl = require('path/to/dist/bcl.js');  // Standalone
-const BCl = require('path/to/dist/bcl.js')(sodium);  // Slim
+const BCl = require('path/to/dist/bcl.slim.js')(sodium);  // Slim
 const { BCl } = require('@nthparty/bcl');  // Node.js
 
 BCl.ready.then(function () {
