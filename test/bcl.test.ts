@@ -19,8 +19,6 @@ function assertEqual(bytes1: Uint8Array, bytes2: Uint8Array): asserts bytes1 {
     }
 }
 
-const from_hex = BCl.Sodium.from_hex;
-
 /**
  * API symbols that should be available to users upon module import.
  */
@@ -57,7 +55,8 @@ describe('namespace', () => {
         assertTrue(BCl.Sodium !== null);
         const methods = Object.getOwnPropertyNames(BCl);
         assertTrue(api_methods_BCl().every(val => methods.includes(val)));
-        assertEqual(from_hex(""));
+        assertEqual(BCl.Sodium.from_hex('8badf00d'), new Uint8Array([139, 173, 240, 13]));
+        assertTrue(BCl.Sodium.to_hex(BCl.Sodium.from_hex('8badf00d')) === '8badf00d');
     });
 
     test('sodium api has all methods', () => {
