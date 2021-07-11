@@ -1,5 +1,5 @@
 # bcl-js
-[![npm version](https://badge.fury.io/js/%40nthparty%2Fbcl.svg)](https://www.npmjs.com/package/@nthparty/bcl)
+[![npm version](https://badge.fury.io/js/%40nthparty%2Fbcl.svg#)](https://www.npmjs.com/package/@nthparty/bcl)
 [![GitHub Actions Status](https://github.com/nthparty/bcl-js/workflows/Test%20Coveralls/badge.svg)](https://github.com/nthparty/bcl-js/actions)
 [![Coverage Status](https://coveralls.io/repos/github/nthparty/bcl-js/badge.svg?branch=main)](https://coveralls.io/github/nthparty/bcl-js?branch=main)
 
