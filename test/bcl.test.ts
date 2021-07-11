@@ -4,7 +4,7 @@
  * classes, as well as unit tests confirming algebraic relationships among primitives.
  */
 
-import { BCl } from "../src/bcl";
+import { BCl } from '../src/bcl';
 import { Secret, Public, Plain, Cipher } from '../src/types';
 
 function assertTrue(condition: boolean): asserts condition {

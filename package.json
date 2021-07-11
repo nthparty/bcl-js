@@ -1,7 +1,7 @@
 {
   "name": "@nthparty/bcl",
   "version": "0.1.0",
-  "description": "JavaScript library that serves as an API for common primitives used to implement OPRF and OT protocols.",
+  "description": "TypeScript library that provides a simple interface for symmetric (i.e., symmetric-key) and asymmetric (i.e., asymmetric-key) encryption/decryption primitives.",
   "main": "build/bcl.js",
   "types": "build/bcl.d.ts",
   "directories": {
