@@ -40,12 +40,8 @@ class Key extends Raw {
  * Wrapper export class for a bytes-like object that represents a secret key.
  */
 export class Secret extends Key {
-    constructor(key: Key | Uint8Array) {
-        if (key instanceof Uint8Array) {
-            super(new Key(new Raw(key)));
-        } else {
-            super(key);
-        }
+    constructor(key: Uint8Array) {
+        super(new Key(new Raw(key)));
     }
 }
 
@@ -53,12 +49,8 @@ export class Secret extends Key {
  * Wrapper export class for a bytes-like object that represents a public key.
  */
 export class Public extends Key {
-    constructor(key: Key | Uint8Array) {
-        if (key instanceof Uint8Array) {
-            super(new Key(new Raw(key)));
-        } else {
-            super(key);
-        }
+    constructor(key: Uint8Array) {
+        super(new Key(new Raw(key)));
     }
 }
 
