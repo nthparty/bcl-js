@@ -1,10 +1,10 @@
-import { Sodium } from "./sodium";
 import { Secret, Public, Plain, Cipher } from './types';
 
 /**
  * Asymmetric (i.e., public-key) encryption/decryption primitives.
  */
-export class Asymmetric {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
+export function Asymmetric_init(Sodium: any): any { return class Asymmetric {
 
     /**
      * Create a secret key.
@@ -45,4 +45,4 @@ export class Asymmetric {
             ciphertext, publicKey ?? this.public(secretKey), secretKey
         ));
     }
-}
+}; }

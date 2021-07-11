@@ -1,6 +1,11 @@
-import { Sodium } from './sodium';
-import { Symmetric } from './symmetric';
-import { Asymmetric } from './asymmetric';
+import { Sodium_init } from './sodium';
+import { Symmetric_init } from './symmetric';
+import { Asymmetric_init } from './asymmetric';
+
+const sodium = require('libsodium-wrappers-sumo');  // tslint:disable-line:no-var-requires
+const Sodium = Sodium_init(sodium);
+const Symmetric = Symmetric_init(Sodium);
+const Asymmetric = Asymmetric_init(Sodium);
 
 /**
  * Wrapper class for primitive operations.

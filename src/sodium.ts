@@ -1,9 +1,9 @@
-import sodium = require('libsodium-wrappers-sumo');
-
 /**
  * Wrapper class for primitive operations.
  */
-export class Sodium {
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
+export function Sodium_init(sodium: any): any { return class Sodium {
 
     /**
      * Return random non-zero scalar.
@@ -57,4 +57,4 @@ export class Sodium {
             resolve();
         });
     });
-}
+}; }

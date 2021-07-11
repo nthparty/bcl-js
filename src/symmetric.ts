@@ -1,10 +1,10 @@
-import { Sodium } from "./sodium";
 import { Secret, Plain, Cipher } from './types';
 
 /**
  * Symmetric (i.e., secret-key) encryption/decryption primitives.
  */
-export class Symmetric {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
+export function Symmetric_init(Sodium: any): any { return class Symmetric {
     /**
      * Create a secret key.
      * @returns {Secret} Secret key.
@@ -36,4 +36,4 @@ export class Symmetric {
         const plaintext = Sodium.secretboxOpen(ciphertext.slice(24), nonce, secretKey);
         return new Plain(plaintext);
     }
-}
+}; }

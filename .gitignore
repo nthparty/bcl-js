@@ -80,13 +80,12 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/
-# Comment in the asymmetric line in if your project uses Gatsby and *not* Next.js
-# https://nextjs.org/blog/next-9-1#asymmetric-directory-support
-# asymmetric
+# Comment in the public line in if your project uses Gatsby and *not* Next.js
+# https://nextjs.org/blog/next-9-1#public-directory-support
+# public
 
 # vuepress build output
 .vuepress/dist
@@ -105,6 +104,3 @@ dist
 
 # IDE
 .idea/
-
-# DS_Store (macOS)
-*.DS_Store

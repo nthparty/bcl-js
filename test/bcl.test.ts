@@ -19,17 +19,6 @@ function assertEqual(bytes1: Uint8Array, bytes2: Uint8Array): asserts bytes1 {
     }
 }
 
-function assertRaise(expected_err: string, thunk): asserts expected_err {
-    try {
-        thunk();
-    } catch (err) {
-        if (err !== expected_err) {
-            throw new Error('Assertion failed: a different error was thrown than expected.');
-        }
-    }
-    throw new Error('Assertion failed: no error was thrown.');
-}
-
 const from_hex = BCl.Sodium.from_hex;
 
 /**
@@ -59,60 +48,64 @@ function api_methods_asymmetric() {
  * Check that namespaces provide access to the expected
  * classes and functions.
  */
-function Test_namespace() {
-    function Test_API_BCl() {
+beforeEach((done) => {
+    BCl.Sodium.ready.then(done);
+});
+
+describe('namespace', () => {
+    test('bcl api has all methods', () => {
+        assertTrue(BCl.Sodium !== null);
+        const methods = Object.getOwnPropertyNames(BCl);
+        assertTrue(api_methods_BCl().every(val => methods.includes(val)));
+        assertEqual(from_hex(""));
+    });
+
+    test('sodium api has all methods', () => {
         assertTrue(BCl.Sodium !== null);
         const methods = Object.getOwnPropertyNames(BCl.Sodium);
-        api_methods_BCl().every(val => methods.includes(val));
-    }
-    function Test_API_Sodium() {
-        assertTrue(BCl.Sodium !== null);
-        const methods = Object.getOwnPropertyNames(BCl.Sodium);
-        api_methods_sodium().every(val => methods.includes(val));
-    }
-    function Test_API_Symmetric() {
+        assertTrue(api_methods_sodium().every(val => methods.includes(val)));
+    });
+
+    test('symmetric api has all methods', () => {
         const s = BCl.Symmetric.secret();
         assertTrue(typeof s.to_base64 === 'function');
         const methods = Object.getOwnPropertyNames(BCl.Symmetric);
-        api_methods_symmetric().every(m => methods.includes(m));
-    }
-    function Test_API_Asymmetric() {
+        assertTrue(api_methods_symmetric().every(m => methods.includes(m)));
+    });
+
+    test('asymmetric api has all methods', () => {
         const s = BCl.Asymmetric.secret();
         assertTrue(typeof s.to_base64 === 'function');
         const p = BCl.Asymmetric.public(s);
         assertTrue(typeof p.to_base64 === 'function');
         const methods = Object.getOwnPropertyNames(BCl.Asymmetric);
-        api_methods_asymmetric().every(m => methods.includes(m));
-    }
-    return { Test_API_BCl, Test_API_Sodium, Test_API_Symmetric, Test_API_Asymmetric };
-}
+        assertTrue(api_methods_asymmetric().every(m => methods.includes(m)));
+    });
+});
 
 
 /**
  * Direct tests of primitive operators that operate on bytes-like objects.
  */
-// function Test_primitives() {
+// describe('primitives', () => {
 //
 //
-//     return {
-//         //
-//     };
-// }
+// });
 
 /**
  * Tests of symmetric and asymmetric wrapper classes and their methods.
  */
-function Test_classes() {
-    function test_symmetric_encrypt_decrypt() {
+describe('classes', () => {
+    test('symmetric encrypt and decrypt', () => {
         const m = new Plain(BCl.Sodium.random(1024));
         const sk = BCl.Symmetric.secret();
         const ct = BCl.Symmetric.encrypt(sk, m);
         const pt = BCl.Symmetric.decrypt(sk, ct);
         assertEqual(pt, m);
         assertTrue(pt instanceof Plain);
-    }
+    });
 
-    function test_asymmetric_encrypt_decrypt() {
+    test('asymmetric encrypt and decrypt', () => {
         const m = new Plain(BCl.Sodium.random(1024));
         const sk = BCl.Asymmetric.secret();
         const pk = BCl.Asymmetric.public(sk);
@@ -122,28 +115,26 @@ function Test_classes() {
         const pt2 = BCl.Asymmetric.decrypt(sk, ct, null);
         assertEqual(pt2, m);
         assertTrue(pt instanceof Plain);
-    }
-
-    return { test_symmetric_encrypt_decrypt, test_asymmetric_encrypt_decrypt };
-}
+    });
+});
 
 /**
  * Tests of classes used as data types.
  */
-function Test_types() {
-    function test_plain() {
+describe('types', () => {
+    test('plain', () => {
         const x = new Plain(BCl.Sodium.random(1024));
         // assertTrue(x instanceof Raw);  // private class
         assertTrue(x instanceof Plain);
-    }
+    });
 
-    function test_secret() {
+    test('secret', () => {
         const s = BCl.Symmetric.secret();
         // assertTrue(s instanceof Key);  // private class
         assertTrue(s instanceof Secret);
-    }
+    });
 
-    function test_public() {
+    test('public', () => {
         const s = BCl.Asymmetric.secret();
         // assertTrue(s instanceof Key);  // private class
         assertTrue(s instanceof Secret);
@@ -151,63 +142,36 @@ function Test_types() {
         const p = BCl.Asymmetric.public(s);
         // assertTrue(p instanceof Key);  // private class
         assertTrue(p instanceof Public);
-    }
+    });
 
-    function test_cipher() {
+    test('cipher', () => {
         const x = new Plain(BCl.Sodium.random(1024));
         const s = BCl.Symmetric.secret();
         const c = BCl.Symmetric.encrypt(s, x);
         // assertTrue(c instanceof Raw);  // private class
         assertTrue(c instanceof Cipher);
-    }
+    });
 
-    function test_secret_base64() {
+    test('secret base64', () => {
         const s = BCl.Symmetric.secret();
         assertEqual(s, Secret.from_base64(s.to_base64()));
-    }
+    });
 
-    function test_public_base64() {
+    test('public base64', () => {
         const s = BCl.Asymmetric.secret();
         const p = BCl.Asymmetric.public(s);
         assertEqual(p, Public.from_base64(p.to_base64()));
-    }
+    });
 
-    function test_plain_base64() {
+    test('plain base64', () => {
         const x = new Plain(BCl.Sodium.random(1024));
         assertEqual(x, Plain.from_base64(x.to_base64()));
-    }
+    });
 
-    function test_cipher_base64() {
+    test('cipher base64', () => {
         const x = new Plain(BCl.Sodium.random(1024));
         const s = BCl.Symmetric.secret();
         const c = BCl.Symmetric.encrypt(s, x);
         assertEqual(c, Cipher.from_base64(c.to_base64()));
-    }
-
-    return {
-        test_plain, test_secret, test_cipher, test_public,
-        test_secret_base64, test_public_base64,
-        test_plain_base64, test_cipher_base64
-    };
-}
-
-function all_tests() {
-    console.log('* sodium is ready');
-    const TestSuites = {
-        Test_namespace,
-        // Test_primitives,
-        Test_classes,
-        Test_types
-    };
-    for (const [name, init] of Object.entries(TestSuites)) {
-        console.log('\nUnit test reference bit vectors for ' + name + ' methods...');
-        const tests = init();
-        for (const m of Object.keys(tests)) {
-            const method = tests[m];
-            console.log('* ' + m + ': ' + (r => r === undefined ? 'pass' : r)(method()));
-        }
-    }
-}
-
-console.log('Loading sodium...');
-BCl.ready.then(all_tests);
+    });
+});
