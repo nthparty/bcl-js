@@ -1,6 +1,6 @@
 {
   "name": "@nthparty/bcl",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "TypeScript library that provides a simple interface for symmetric (i.e., symmetric-key) and asymmetric (i.e., asymmetric-key) encryption/decryption primitives.",
   "main": "build/bcl.js",
   "types": "build/bcl.d.ts",
@@ -59,6 +59,7 @@
     "@types/libsodium-wrappers": "^0.7.9",
     "@types/libsodium-wrappers-sumo": "^0.7.5",
     "@types/node": "^16.0.0",
+    "buffer": "^6.0.3",
     "libsodium-wrappers-sumo": "^0.7.9"
   }
 }
