@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <title>BCl</title>
+  <meta charset="UTF-8">
+
+  <script type="text/javascript" src="sodium.js"></script>
+  <script type="text/javascript" src="../../dist/bcl.js"></script>
+  <style>
+    .ok {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+<h1>BCl Tests</h1>
+</hr>
+<pre id="results" style="font-family: monospace;"></pre>
+</body>
+
+<script type="text/javascript">
+  /**
+   * Display a string in the HTML
+   */
+  window.display = function (s) {
+      document.getElementById('results').append(s + "\n");
+  };
+</script>
+<script type="text/javascript" src="browser.bcl.test.js"></script>
+
+</html>
