@@ -33,6 +33,24 @@ export function Sodium_init(sodium: any): any { return class Sodium {
     }
 
     /**
+     * Return the Base64 encoding of a byte array.
+     * @param {Uint8Array} bytes Byte array of any length.
+     * @returns {string} Base64 UTF-8 string representation of the bytes.
+     */
+    static to_base64(bytes: Uint8Array): string {
+        return sodium.to_base64(bytes, 1);
+    }
+
+    /**
+     * Return a new byte array from its representation in Base64.
+     * @param {string} s Base64 UTF-8 string representation of a point.
+     * @returns {Uint8Array} Byte array corresponding to the Base64 encoding.
+     */
+    static from_base64(s: string): Uint8Array {
+        return sodium.from_base64(s, 1);
+    }
+
+    /**
      * Return -1, 0 or -1 depending on whether the bytes1 is less than,
      * equal or greater than bytes2.
      * @param {Uint8Array} bytes1 Byte array of any length.

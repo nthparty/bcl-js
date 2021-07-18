@@ -147,47 +147,42 @@ function Test_classes() {
 function Test_types() {
     function test_plain() {
         var x = BCl.Sodium.random(1024);
-        // assertTrue(x.constructor.name === "" && x instanceof Uint8Array);  // private class
+        assertTrue(x instanceof Uint8Array);
     }
     function test_secret() {
         var s = BCl.Symmetric.secret();
-        // assertTrue(s.constructor.name === "" && s instanceof Uint8Array);  // private class
-        assertTrue(s.constructor.name === "" && s instanceof Uint8Array);
+        assertTrue(s instanceof BCl.Secret);
     }
     function test_public() {
         var s = BCl.Asymmetric.secret();
-        // assertTrue(s.constructor.name === "" && s instanceof Uint8Array);  // private class
-        assertTrue(s.constructor.name === "" && s instanceof Uint8Array);
+        assertTrue(s instanceof BCl.Secret);
         var p = BCl.Asymmetric.public(s);
-        // assertTrue(p.constructor.name === "" && p instanceof Uint8Array);  // private class
-        assertTrue(p.constructor.name === "" && p instanceof Uint8Array);
+        assertTrue(p instanceof BCl.Public);
     }
     function test_cipher() {
         var x = BCl.Sodium.random(1024);
         var s = BCl.Symmetric.secret();
         var c = BCl.Symmetric.encrypt(s, x);
-        // assertTrue(c.constructor.name === "" && c instanceof Uint8Array);  // private class
-        assertTrue(c.constructor.name === "" && c instanceof Uint8Array);
+        assertTrue(c instanceof BCl.Cipher);
     }
     function test_secret_base64() {
         var s = BCl.Symmetric.secret();
-        assertEqual(s, s.constructor.from_base64(s.to_base64()));
+        assertEqual(s, BCl.Secret.from_base64(s.to_base64(this)));
     }
     function test_public_base64() {
         var s = BCl.Asymmetric.secret();
         var p = BCl.Asymmetric.public(s);
-        assertEqual(p, p.constructor.from_base64(p.to_base64()));
+        assertEqual(p, BCl.Public.from_base64(p.to_base64(this)));
     }
     function test_plain_base64() {
         var x = BCl.Sodium.random(1024);
-        var Plain = BCl.Symmetric.secret().constructor;
-        assertEqual(x, Plain.from_base64(new Plain(x).to_base64()));
+        assertEqual(x, BCl.Plain.from_base64(new BCl.Plain(x).to_base64(this)));
     }
     function test_cipher_base64() {
         var x = BCl.Sodium.random(1024);
         var s = BCl.Symmetric.secret();
         var c = BCl.Symmetric.encrypt(s, x);
-        assertEqual(c, c.constructor.from_base64(c.to_base64()));
+        assertEqual(c, BCl.Cipher.from_base64(c.to_base64(this)));
     }
     return {
         test_plain: test_plain,

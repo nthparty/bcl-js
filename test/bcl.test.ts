@@ -5,7 +5,11 @@
  */
 
 import { BCl } from '../src/bcl';
-import { Secret, Public, Plain, Cipher } from '../src/types';
+
+// Test with internal types
+import { Types_init } from '../src/types';
+const { Secret, Public, Plain, Cipher } = Types_init(BCl.Sodium);
+
 
 function assertTrue(condition: boolean): asserts condition {
     if (condition !== true) {
@@ -153,24 +157,24 @@ describe('types', () => {
 
     test('secret base64', () => {
         const s = BCl.Symmetric.secret();
-        assertEqual(s, Secret.from_base64(s.to_base64()));
+        assertEqual(s, Secret.from_base64(s.to_base64(this)));
     });
 
     test('public base64', () => {
         const s = BCl.Asymmetric.secret();
         const p = BCl.Asymmetric.public(s);
-        assertEqual(p, Public.from_base64(p.to_base64()));
+        assertEqual(p, Public.from_base64(p.to_base64(this)));
     });
 
     test('plain base64', () => {
         const x = new Plain(BCl.Sodium.random(1024));
-        assertEqual(x, Plain.from_base64(x.to_base64()));
+        assertEqual(x, Plain.from_base64(x.to_base64(this)));
     });
 
     test('cipher base64', () => {
         const x = new Plain(BCl.Sodium.random(1024));
         const s = BCl.Symmetric.secret();
         const c = BCl.Symmetric.encrypt(s, x);
-        assertEqual(c, Cipher.from_base64(c.to_base64()));
+        assertEqual(c, BCl.Cipher.from_base64(c.to_base64(this)));
     });
 });

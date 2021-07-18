@@ -1,16 +1,16 @@
-import { Secret, Public, Plain, Cipher } from './types';
+import { Types_init } from './types';
 
 /**
  * Asymmetric (i.e., public-key) encryption/decryption primitives.
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
-export function Asymmetric_init(Sodium: any): any { return class Asymmetric {
+export function Asymmetric_init(Sodium: any, Types: any): any { const { Secret, Public, Plain, Cipher } = Types; return class Asymmetric {
 
     /**
      * Create a secret key.
      * @returns {Secret} Secret key.
      */
-    static secret(): Secret {
+    static secret(): typeof Secret {
         return new Secret(Sodium.random(32));
     }
 
@@ -19,7 +19,7 @@ export function Asymmetric_init(Sodium: any): any { return class Asymmetric {
      * @param {Secret} secretKey Secret key.
      * @returns {Public} Corresponding public key.
      */
-    static public(secretKey: Secret): Public {
+    static public(secretKey: typeof Secret): typeof Public {
         return new Public(Sodium.scalarmultBase(secretKey));
     }
 
@@ -29,7 +29,7 @@ export function Asymmetric_init(Sodium: any): any { return class Asymmetric {
      * @param {Plain} plaintext Message to encrypt.
      * @returns {Cipher} Encrypted ciphertext.
      */
-    static encrypt(publicKey: Public, plaintext: Plain): Cipher {
+    static encrypt(publicKey: typeof Public, plaintext: typeof Plain): typeof Cipher {
         return new Cipher(Sodium.boxSeal(plaintext, publicKey));
     }
 
@@ -40,7 +40,7 @@ export function Asymmetric_init(Sodium: any): any { return class Asymmetric {
      * @param {Public} publicKey Recipient's public key.
      * @returns {Plain} Decrypted plaintext.
      */
-    static decrypt(secretKey: Secret, ciphertext: Cipher, publicKey: Public): Plain {
+    static decrypt(secretKey: typeof Secret, ciphertext: typeof Cipher, publicKey: typeof Public): typeof Plain {
         return new Plain(Sodium.boxSealOpen(
             ciphertext, publicKey ?? this.public(secretKey), secretKey
         ));
