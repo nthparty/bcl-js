@@ -42,6 +42,20 @@ export function Types_init(Sodium: any): { 'Public': any, 'Secret': any, 'Plain'
         to_hex(this: Raw): string {
             return Sodium.to_hex(this);
         }
+
+        /**
+         * Construct a raw value from its UTF-8 string representation.
+         */
+        static from_string(s: string): Raw {
+            return new Raw(Sodium.from_string(s));
+        }
+
+        /**
+         * Convert a raw value to its UTF-8 string representation.
+         */
+        to_string(this: Raw): string {
+            return Sodium.to_string(this);
+        }
     }
 
     /**

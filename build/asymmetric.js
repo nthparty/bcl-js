@@ -1,19 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Asymmetric_init = void 0;
-const types_1 = require("./types");
 /**
  * Asymmetric (i.e., public-key) encryption/decryption primitives.
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
-function Asymmetric_init(Sodium) {
+function Asymmetric_init(Sodium, Types) {
+    const { Secret, Public, Plain, Cipher } = Types;
     return class Asymmetric {
         /**
          * Create a secret key.
          * @returns {Secret} Secret key.
          */
         static secret() {
-            return new types_1.Secret(Sodium.random(32));
+            return new Secret(Sodium.random(32));
         }
         /**
          * Create a public key using a secret key (a bytes-like object of length 32).
@@ -21,7 +21,7 @@ function Asymmetric_init(Sodium) {
          * @returns {Public} Corresponding public key.
          */
         static public(secretKey) {
-            return new types_1.Public(Sodium.scalarmultBase(secretKey));
+            return new Public(Sodium.scalarmultBase(secretKey));
         }
         /**
          * Encrypt a plaintext (a bytes-like object) using the supplied public key.
@@ -30,7 +30,7 @@ function Asymmetric_init(Sodium) {
          * @returns {Cipher} Encrypted ciphertext.
          */
         static encrypt(publicKey, plaintext) {
-            return new types_1.Cipher(Sodium.boxSeal(plaintext, publicKey));
+            return new Cipher(Sodium.boxSeal(plaintext, publicKey));
         }
         /**
          * Decrypt a ciphertext (a bytes-like object) using the supplied secret key.
@@ -40,7 +40,7 @@ function Asymmetric_init(Sodium) {
          * @returns {Plain} Decrypted plaintext.
          */
         static decrypt(secretKey, ciphertext, publicKey) {
-            return new types_1.Plain(Sodium.boxSealOpen(ciphertext, publicKey !== null && publicKey !== void 0 ? publicKey : this.public(secretKey), secretKey));
+            return new Plain(Sodium.boxSealOpen(ciphertext, publicKey !== null && publicKey !== void 0 ? publicKey : this.public(secretKey), secretKey));
         }
     };
 }

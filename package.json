@@ -1,6 +1,6 @@
 {
   "name": "@nthparty/bcl",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "TypeScript library that provides a simple interface for symmetric (i.e., symmetric-key) and asymmetric (i.e., asymmetric-key) encryption/decryption primitives.",
   "main": "build/bcl.js",
   "types": "build/bcl.d.ts",

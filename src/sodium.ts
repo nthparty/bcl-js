@@ -43,11 +43,29 @@ export function Sodium_init(sodium: any): any { return class Sodium {
 
     /**
      * Return a new byte array from its representation in Base64.
-     * @param {string} s Base64 UTF-8 string representation of a point.
+     * @param {string} s Base64 UTF-8 string representation of the bytes.
      * @returns {Uint8Array} Byte array corresponding to the Base64 encoding.
      */
     static from_base64(s: string): Uint8Array {
         return sodium.from_base64(s, 1);
+    }
+
+    /**
+     * Return the UTF-8 string encoding of a byte array.
+     * @param {Uint8Array} bytes Byte array of any length.
+     * @returns {string} UTF-8 string representation of the bytes.
+     */
+    static to_string(bytes: Uint8Array): string {
+        return sodium.to_string(bytes);
+    }
+
+    /**
+     * Return a new byte array from a UTF-8 string.
+     * @param {string} s UTF-8 string representation of the bytes.
+     * @returns {Uint8Array} Byte array corresponding to the UTF-8 standard.
+     */
+    static from_string(s: string): Uint8Array {
+        return sodium.from_string(s);
     }
 
     /**
@@ -61,6 +79,15 @@ export function Sodium_init(sodium: any): any { return class Sodium {
         return sodium.compare(bytes1, bytes2);
     }
 
+    /**
+     * Return a random 32-bit unsigned integer below an upper bound.
+     * @param {number} upper_bound Upper bound (exclusive, no greater than 2^31-1).
+     * @returns {number} Random whole number less than `upper_bound`.
+     */
+    static randombytes_uniform(upper_bound: number): number {
+        return sodium.randombytes_uniform(upper_bound);
+    }
+
     // Aliases
     static boxSeal = (m, pk) => sodium.crypto_box_seal(m, pk);
     static boxSealOpen = (ct, pk, sk) => sodium.crypto_box_seal_open(ct, pk, sk);
@@ -71,7 +98,7 @@ export function Sodium_init(sodium: any): any { return class Sodium {
     // Promise will be resolved when the sodium library is finished initializing.
     static ready: Promise<void> = new Promise<void>(resolve => {
         sodium.ready.then(() => {
-            //
+            // Optional setup hook
             resolve();
         });
     });

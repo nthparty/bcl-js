@@ -4,7 +4,9 @@ import { Symmetric_init } from './symmetric';
 import { Asymmetric_init } from './asymmetric';
 
 const sodium = require('libsodium-wrappers-sumo');  // tslint:disable-line:no-var-requires
-const Sodium = Sodium_init(sodium);
+const  Sodium = Sodium_init(sodium);
+
+const Utility = { random: Sodium.randombytes_uniform };
 
 const Types = Types_init(Sodium);
 const { Secret, Public, Plain, Cipher } = Types;
@@ -17,6 +19,7 @@ const Asymmetric = Asymmetric_init(Sodium, Types);
  */
 export class BCl {
     public static Sodium = Sodium;
+    public static Utility = Utility;
     public static Symmetric = Symmetric;
     public static Asymmetric = Asymmetric;
     public static Secret = Secret;

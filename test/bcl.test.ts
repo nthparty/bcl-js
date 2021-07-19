@@ -6,10 +6,11 @@
 
 import { BCl } from '../src/bcl';
 
-// Test with internal types
-import { Types_init } from '../src/types';
-const { Secret, Public, Plain, Cipher } = Types_init(BCl.Sodium);
+// Test with BCl types
+const { Secret, Public, Plain, Cipher } = BCl;
 
+// Safe array bytes for UTF-8 serializations
+const utf8 = () => BCl.Sodium.from_base64('wrbyiLax9IOPi+inpOWirXHMp0fznZqn0JTzrZ+CyoE=');
 
 function assertTrue(condition: boolean): asserts condition {
     if (condition !== true) {
@@ -119,6 +120,17 @@ describe('classes', () => {
         assertEqual(pt2, m);
         assertTrue(pt instanceof Plain);
     });
+
+    test('utilities', () => {
+        for (let _i = 0; _i < 128; _i++) {
+            const m = BCl.Utility.random(Math.pow(2, 31) - 1);
+            const n = BCl.Utility.random(m);
+            const k = BCl.Utility.random(n);
+            assertTrue(k < n);
+            assertTrue(n < m);
+            assertTrue(k < m);
+        }
+    });
 });
 
 /**
@@ -155,26 +167,34 @@ describe('types', () => {
         assertTrue(c instanceof Cipher);
     });
 
-    test('secret base64', () => {
+    test('secret serde', () => {
         const s = BCl.Symmetric.secret();
-        assertEqual(s, Secret.from_base64(s.to_base64(this)));
+        assertEqual(s, Secret.from_base64(s.to_base64()));
+        assertEqual(s, Secret.from_hex(s.to_hex()));
+        assertEqual(utf8(), Secret.from_string((new Secret(utf8())).to_string()));
     });
 
-    test('public base64', () => {
+    test('public serde', () => {
         const s = BCl.Asymmetric.secret();
         const p = BCl.Asymmetric.public(s);
         assertEqual(p, Public.from_base64(p.to_base64(this)));
+        assertEqual(p, Public.from_hex(p.to_hex(this)));
+        assertEqual(utf8(), Public.from_string((new Public(utf8())).to_string(this)));
     });
 
-    test('plain base64', () => {
+    test('plain serde', () => {
         const x = new Plain(BCl.Sodium.random(1024));
         assertEqual(x, Plain.from_base64(x.to_base64(this)));
+        assertEqual(x, Plain.from_hex(x.to_hex(this)));
+        assertEqual(utf8(), Plain.from_string((new Plain(utf8())).to_string(this)));
     });
 
-    test('cipher base64', () => {
+    test('cipher serde', () => {
         const x = new Plain(BCl.Sodium.random(1024));
         const s = BCl.Symmetric.secret();
         const c = BCl.Symmetric.encrypt(s, x);
-        assertEqual(c, BCl.Cipher.from_base64(c.to_base64(this)));
+        assertEqual(c, Cipher.from_base64(c.to_base64(this)));
+        assertEqual(c, Cipher.from_hex(c.to_hex(this)));
+        assertEqual(utf8(), Cipher.from_string((new Cipher(utf8())).to_string(this)));
     });
 });

@@ -15,6 +15,7 @@ export function BClSlim(sodium: any): any {
      */
     return class BCl {
         public static Sodium = Sodium;
+        public static Utility = { random: Sodium.randombytes_uniform };
         public static Symmetric = Symmetric;
         public static Asymmetric = Asymmetric;
         public static Secret = Types.Secret;

@@ -1,71 +1,97 @@
 "use strict";
+// tslint:disable:max-classes-per-file
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Cipher = exports.Plain = exports.Public = exports.Secret = void 0;
+exports.Types_init = void 0;
 /**
- * Wrapper classes for primitives.
+ * Classes for data types.
  */
-/**
- * Wrapper class for a raw bytes-like object that represents a key,
- * plaintext, or ciphertext.
- */
-class Raw extends Uint8Array {
-    constructor(bytes) {
-        super(bytes);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/explicit-module-boundary-types
+function Types_init(Sodium) {
+    /**
+     * Wrapper class for a raw bytes-like object that represents a key,
+     * plaintext, or ciphertext.
+     */
+    class Raw extends Uint8Array {
+        constructor(bytes) {
+            super(bytes);
+        }
+        /**
+         * Construct a raw value from its Base64 UTF-8 string representation.
+         */
+        static from_base64(s) {
+            return new Raw(Sodium.from_base64(s));
+        }
+        /**
+         * Convert a raw value to its Base64 UTF-8 string representation.
+         */
+        to_base64() {
+            return Sodium.to_base64(this);
+        }
+        /**
+         * Construct a raw value from its hexadecimal UTF-8 string representation.
+         */
+        static from_hex(s) {
+            return new Raw(Sodium.from_hex(s));
+        }
+        /**
+         * Convert a raw value to its hexadecimal UTF-8 string representation.
+         */
+        to_hex() {
+            return Sodium.to_hex(this);
+        }
+        /**
+         * Construct a raw value from its UTF-8 string representation.
+         */
+        static from_string(s) {
+            return new Raw(Sodium.from_string(s));
+        }
+        /**
+         * Convert a raw value to its UTF-8 string representation.
+         */
+        to_string() {
+            return Sodium.to_string(this);
+        }
     }
     /**
-     * Convert Base64 UTF-8 string representation of a raw value.
+     * Wrapper export class for a bytes-like object that represents a key.
      */
-    static from_base64(s) {
-        return new Raw(Buffer.from(s, 'base64'));
+    class Key extends Raw {
+        constructor(raw) {
+            super(raw);
+        }
     }
     /**
-     * Convert a raw value to its Base64 UTF-8 string representation.
+     * Wrapper export class for a bytes-like object that represents a secret key.
      */
-    to_base64() {
-        return Buffer.from(this).toString('base64');
+    class Secret extends Key {
+        constructor(key) {
+            super(new Key(new Raw(key)));
+        }
     }
-}
-/**
- * Wrapper export class for a bytes-like object that represents a key.
- */
-class Key extends Raw {
-    constructor(raw) {
-        super(raw);
+    /**
+     * Wrapper export class for a bytes-like object that represents a public key.
+     */
+    class Public extends Key {
+        constructor(key) {
+            super(new Key(new Raw(key)));
+        }
     }
-}
-/**
- * Wrapper export class for a bytes-like object that represents a secret key.
- */
-class Secret extends Key {
-    constructor(key) {
-        super(new Key(new Raw(key)));
+    /**
+     * Wrapper export class for a bytes-like object that represents a plaintext.
+     */
+    class Plain extends Raw {
+        constructor(raw) {
+            super(raw);
+        }
     }
-}
-exports.Secret = Secret;
-/**
- * Wrapper export class for a bytes-like object that represents a public key.
- */
-class Public extends Key {
-    constructor(key) {
-        super(new Key(new Raw(key)));
+    /**
+     * Wrapper export class for a bytes-like object that represents a ciphertext.
+     */
+    class Cipher extends Raw {
+        constructor(raw) {
+            super(raw);
+        }
     }
+    return { Secret, Public, Plain, Cipher };
 }
-exports.Public = Public;
-/**
- * Wrapper export class for a bytes-like object that represents a plaintext.
- */
-class Plain extends Raw {
-    constructor(raw) {
-        super(raw);
-    }
-}
-exports.Plain = Plain;
-/**
- * Wrapper export class for a bytes-like object that represents a ciphertext.
- */
-class Cipher extends Raw {
-    constructor(raw) {
-        super(raw);
-    }
-}
-exports.Cipher = Cipher;
+exports.Types_init = Types_init;
