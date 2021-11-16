@@ -3,17 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Symmetric | @nthparty/bcl</title>
+	<title>Asymmetric | @nthparty/bcl</title>
 	<meta name="description" content="Documentation for @nthparty/bcl">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="stylesheet" href="./assets/css/main.css">
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="./assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@nthparty/bcl</a>
+					<a href="./index.html" class="title">@nthparty/bcl</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -53,16 +53,16 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
+					<a href="./globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_bcl_.html">&quot;bcl&quot;</a>
+					<a href="./_bcl_.html">&quot;bcl&quot;</a>
 				</li>
 				<li>
-					<a href="_bcl_.symmetric.html">Symmetric</a>
+					<a href="_bcl_.asymmetric.html">Asymmetric</a>
 				</li>
 			</ul>
-			<h1>Class Symmetric</h1>
+			<h1>Class Asymmetric</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Symmetric (i.e., secret-key) encryption/decryption primitives.</p>
+						<p>Asymmetric (i.e., public-key) encryption/decryption primitives.</p>
 					</div>
 				</div>
 			</section>
@@ -80,7 +80,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Symmetric</span>
+						<span class="target">Asymmetric</span>
 					</li>
 				</ul>
 			</section>
@@ -91,9 +91,10 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported"><a href="_bcl_.symmetric.html#decrypt" class="tsd-kind-icon">decrypt</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported"><a href="_bcl_.symmetric.html#encrypt" class="tsd-kind-icon">encrypt</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported"><a href="_bcl_.symmetric.html#secret" class="tsd-kind-icon">secret</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported"><a href="_bcl_.asymmetric.html#decrypt" class="tsd-kind-icon">decrypt</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported"><a href="_bcl_.asymmetric.html#encrypt" class="tsd-kind-icon">encrypt</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported"><a href="_bcl_.asymmetric.html#public" class="tsd-kind-icon">public</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported"><a href="_bcl_.asymmetric.html#secret" class="tsd-kind-icon">secret</a></li>
 							</ul>
 						</section>
 					</div>
@@ -105,13 +106,13 @@
 					<a name="decrypt" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> decrypt</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">decrypt<span class="tsd-signature-symbol">(</span>secretKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.secret.html" class="tsd-signature-type">Secret</a>, ciphertext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.cipher.html" class="tsd-signature-type">Cipher</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.plain.html" class="tsd-signature-type">Plain</a></li>
+						<li class="tsd-signature tsd-kind-icon">decrypt<span class="tsd-signature-symbol">(</span>secretKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.secret.html" class="tsd-signature-type">Secret</a>, ciphertext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.cipher.html" class="tsd-signature-type">Cipher</a>, publicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.public.html" class="tsd-signature-type">Public</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.plain.html" class="tsd-signature-type">Plain</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nthparty/bcl-js/blob/fa39548/src/bcl.ts#L238">src/bcl.ts:238</a></li>
+									<li>Defined in <a href="https://github.com/nthparty/bcl-js/blob/fa39548/src/bcl.ts#L290">src/bcl.ts:290</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -124,13 +125,19 @@
 								<li>
 									<h5>secretKey: <span class="tsd-signature-symbol">typeof </span><a href="_bcl_.secret.html" class="tsd-signature-type">Secret</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Secret key.</p>
+										<p>Recipient&#39;s secret key.</p>
 									</div>
 								</li>
 								<li>
 									<h5>ciphertext: <span class="tsd-signature-symbol">typeof </span><a href="_bcl_.cipher.html" class="tsd-signature-type">Cipher</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Ciphertext to decrypt.</p>
+									</div>
+								</li>
+								<li>
+									<h5>publicKey: <span class="tsd-signature-symbol">typeof </span><a href="_bcl_.public.html" class="tsd-signature-type">Public</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Recipient&#39;s public key.</p>
 									</div>
 								</li>
 							</ul>
@@ -143,26 +150,26 @@
 					<a name="encrypt" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> encrypt</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">encrypt<span class="tsd-signature-symbol">(</span>secretKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.secret.html" class="tsd-signature-type">Secret</a>, plaintext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.plain.html" class="tsd-signature-type">Plain</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.cipher.html" class="tsd-signature-type">Cipher</a></li>
+						<li class="tsd-signature tsd-kind-icon">encrypt<span class="tsd-signature-symbol">(</span>publicKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.public.html" class="tsd-signature-type">Public</a>, plaintext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.plain.html" class="tsd-signature-type">Plain</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.cipher.html" class="tsd-signature-type">Cipher</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nthparty/bcl-js/blob/fa39548/src/bcl.ts#L225">src/bcl.ts:225</a></li>
+									<li>Defined in <a href="https://github.com/nthparty/bcl-js/blob/fa39548/src/bcl.ts#L278">src/bcl.ts:278</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Encrypt a plaintext (a bytes-like object) using the supplied secret key.</p>
+									<p>Encrypt a plaintext (a bytes-like object) using the supplied public key.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>secretKey: <span class="tsd-signature-symbol">typeof </span><a href="_bcl_.secret.html" class="tsd-signature-type">Secret</a></h5>
+									<h5>publicKey: <span class="tsd-signature-symbol">typeof </span><a href="_bcl_.public.html" class="tsd-signature-type">Public</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Secret key.</p>
+										<p>Recipient&#39;s public key.</p>
 									</div>
 								</li>
 								<li>
@@ -178,6 +185,38 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+					<a name="public" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> public</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">public<span class="tsd-signature-symbol">(</span>secretKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.secret.html" class="tsd-signature-type">Secret</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_bcl_.public.html" class="tsd-signature-type">Public</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/nthparty/bcl-js/blob/fa39548/src/bcl.ts#L267">src/bcl.ts:267</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a public key using a secret key (a bytes-like object of length 32).</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>secretKey: <span class="tsd-signature-symbol">typeof </span><a href="_bcl_.secret.html" class="tsd-signature-type">Secret</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Secret key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">typeof </span><a href="_bcl_.public.html" class="tsd-signature-type">Public</a></h4>
+							<p>Corresponding public key.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
 					<a name="secret" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> secret</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
@@ -187,7 +226,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nthparty/bcl-js/blob/fa39548/src/bcl.ts#L214">src/bcl.ts:214</a></li>
+									<li>Defined in <a href="https://github.com/nthparty/bcl-js/blob/fa39548/src/bcl.ts#L257">src/bcl.ts:257</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -206,18 +245,36 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
+						<a href="./globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/_bcl_.html">&quot;bcl&quot;</a>
+						<a href="./_bcl_.html">&quot;bcl&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-not-exported">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-module tsd-is-not-exported">
 						<a href="_bcl_.asymmetric.html" class="tsd-kind-icon">Asymmetric</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+								<a href="_bcl_.asymmetric.html#decrypt" class="tsd-kind-icon">decrypt</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+								<a href="_bcl_.asymmetric.html#encrypt" class="tsd-kind-icon">encrypt</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+								<a href="_bcl_.asymmetric.html#public" class="tsd-kind-icon">public</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+								<a href="_bcl_.asymmetric.html#secret" class="tsd-kind-icon">secret</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="_bcl_.bcl.html" class="tsd-kind-icon">BCl</a>
 					</li>
@@ -242,29 +299,14 @@
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-not-exported">
 						<a href="_bcl_.sodium.html" class="tsd-kind-icon">Sodium</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-module tsd-is-not-exported">
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-not-exported">
 						<a href="_bcl_.symmetric.html" class="tsd-kind-icon">Symmetric</a>
-						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
-								<a href="_bcl_.symmetric.html#decrypt" class="tsd-kind-icon">decrypt</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
-								<a href="_bcl_.symmetric.html#encrypt" class="tsd-kind-icon">encrypt</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
-								<a href="_bcl_.symmetric.html#secret" class="tsd-kind-icon">secret</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
-						<a href="../modules/_bcl_.html#sodium-1" class="tsd-kind-icon">sodium</a>
+						<a href="./_bcl_.html#sodium-1" class="tsd-kind-icon">sodium</a>
 					</li>
 					<li class=" tsd-kind-object-literal tsd-parent-kind-module tsd-is-not-exported">
-						<a href="../modules/_bcl_.html#utility" class="tsd-kind-icon">Utility</a>
+						<a href="./_bcl_.html#utility" class="tsd-kind-icon">Utility</a>
 					</li>
 				</ul>
 			</nav>
@@ -292,6 +334,6 @@
 	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
-<script src="../assets/js/main.js"></script>
+<script src="./assets/js/main.js"></script>
 </body>
 </html>
