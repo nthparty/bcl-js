@@ -60,6 +60,7 @@
     "@types/libsodium-wrappers-sumo": "^0.7.5",
     "@types/node": "^16.0.0",
     "buffer": "^6.0.3",
+    "jsdoc": "^3.6.7",
     "libsodium-wrappers-sumo": "^0.7.9"
   }
 }
